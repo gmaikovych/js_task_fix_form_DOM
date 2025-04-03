@@ -2,10 +2,14 @@
 
 const inputs = [...document.querySelectorAll('input')];
 
-for (let i = 0; i < inputs.length; i++) {
-  const labelHTML = `<label class= "field-label" for="${inputs[i].id}">${inputs[i].name}</label>`;
+inputs.forEach((input) => {
+  const label = document.createElement('label');
 
-  inputs[i].insertAdjacentHTML('beforebegin', labelHTML);
+  label.className = 'field-label';
+  label.htmlFor = input.id;
+  label.textContent = input.name;
 
-  inputs[i].placeholder = inputs[i].name.toUpperCase();
-}
+  input.placeholder = input.name.toUpperCase();
+
+  input.parentNode.prepend(label);
+});
